@@ -161,13 +161,6 @@ def individuo_senha(tamanho_senha, letras):
 
     return candidato
 
-def individuo_senha_anon(letras):
-    """Cria um candidato para o proble ada senha
-    Args:
-        letras: letras possíveis de serem sorteadas.
-    Return:
-        Lista de combinações de letras"""
-
 
 def individuo_cv(cidades):
     """Sorteia um caminho possível no problema do caixeiro viajante
@@ -221,31 +214,19 @@ def populacao_cnb(tamanho, n_genes, valor_max_caixa):
 
 
 def populacao_inicial_senha(tamanho, tamanho_senha, letras):
-    """
-    Cria população inicial no problema da senha
-    Args:
+    """Cria população inicial no problema da senha
+    Args
       tamanho: tamanho da população.
       tamanho_senha: inteiro representando o tamanho da senha.
       letras: letras possíveis de serem sorteadas.
     Returns:
-      Lista com todos os indivíduos da população no problema da senha."""
+      Lista com todos os indivíduos da população no problema da senha.
+    """
     populacao = []
     for _ in range(tamanho):
         populacao.append(individuo_senha(tamanho_senha, letras))
     return populacao
 
-def populacao_inicial_senha_anon(tamanho, letras):
-    """
-    Cria população inicial no problema da senha com tamanho indefinido
-    Args:
-        tamanho: tamanho da populção.
-        letras: letras possíveis de serem sorteadas.
-    Returns:
-        Lista com todos os indivíduos da população no problema da senha"""
-    populacao = []
-    for _ in range(tamanho):
-        populacao.append(individuo_senha(letras))
-    return populacao
 
 def populacao_inicial_cv(tamanho, cidades):
     """Cria população inicial no problema do caixeiro viajante.
@@ -410,7 +391,7 @@ def mutacao_cnb(individuo, valor_max_caixa):
 
 
 def mutacao_senha(individuo, letras):
-    """Realiza a mutação de um gene no problema da senha
+    """Realiza a mutação de um gene no problema da senha.
     Args:
       individuo: uma lista representado um individuo no problema da senha
       letras: letras possíveis de serem sorteadas.
@@ -421,15 +402,6 @@ def mutacao_senha(individuo, letras):
     individuo[gene] = gene_letra(letras)
     return individuo
 
-def mutacao_senha_anon(individuo, letras):
-    """Realiza a mutação de um gene no problema da senha
-    Args:
-        individuo: uma lista representando um individuo no problema da senha
-    Return:
-        Um indivíduo (senha) com um gene mutado.
-        INCOMPLETO
-        """
-    pass
 
 def mutacao_de_troca(individuo):
     """Troca o valor de dois genes.
@@ -492,25 +464,7 @@ def funcao_objetivo_senha(individuo, senha_verdadeira):
     for letra_candidato, letra_oficial in zip(individuo, senha_verdadeira):
         diferenca = diferenca + abs(ord(letra_candidato) - ord(letra_oficial))
 
-    return diferenca Arquivo de funções atualizado
-
-def funcao_objetivo_senha_anon():
-    """Computa a funcao objetivo de um individuo no problema da senha
-    Args:
-      individiuo: lista contendo as letras da senha
-      senha_verdadeira: a senha que você está tentando descobrir
-    Returns:
-      A "distância" entre a senha proposta e a senha verdadeira. Essa distância
-      é medida letra por letra. Quanto mais distante uma letra for da que
-      deveria ser, maior é essa distância.
-      INCOMPLETO
-    """
-    diferenca = 0
-
-    for letra_candidato, letra_oficial in zip(individuo, senha_verdadeira):
-        diferenca = diferenca + abs(ord(letra_candidato) - ord(letra_oficial))
-
-    pass
+    return diferenca
 
 
 def funcao_objetivo_cv(individuo, cidades):
@@ -621,21 +575,6 @@ def funcao_objetivo_pop_senha(populacao, senha_verdadeira):
 
     return resultado
 
-def funcao_objetivo_pop_senha_anon(populacao, senha_verdadeira):
-    """Computa a funcao objetivo de uma populaçao no problema da senha.
-    Args:
-      populacao: lista com todos os individuos da população
-      senha_verdadeira: a senha que você está tentando descobrir
-    Returns:
-      Lista contendo os valores da métrica de distância entre senhas.
-      INCOMPLETO
-    """
-    resultado = []
-
-    for individuo in populacao:
-        resultado.append(funcao_objetivo_senha(individuo, senha_verdadeira))
-
-        pass
 
 def funcao_objetivo_pop_cv(populacao, cidades):
     """Computa a funcao objetivo de uma população no problema do caixeiro viajante.
